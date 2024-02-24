@@ -1,4 +1,4 @@
-const MAX_POKEMON = 649;
+const MAX_POKEMON = 1025;
 // Our empty div that will contain all our listItem divs of Pokemon data cards
 const listWrapper = document.querySelector('.list-wrapper');
 // our search input tag where we will search our pokemon
@@ -58,7 +58,7 @@ function displayPokemons(pokemon) {
             </div>
 
             <div class='img-wrap'>
-                <img src='https://raw.githubusercontent.com/pokeapi/sprites/master/sprites/pokemon/other/dream-world/${pokemonID}.svg' alt='${pokemon.name}'/>
+                <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemonID}.png' alt='${pokemon.name}'/>
             </div>
 
             <div class='name-wrap'>

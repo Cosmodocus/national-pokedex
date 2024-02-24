@@ -3,7 +3,7 @@ let currentPokemonId = null;
 
 document.addEventListener('DOMContentLoaded', () => {
 	//restating the max pokemon because this is a new js file
-	const MAX_POKEMONS = 649;
+	const MAX_POKEMONS = 1025;
 	// pokemonID will be getting the url id string
 	const pokemonID = new URLSearchParams(window.location.search).get('id');
 	// when we get the id string, we will be parsing it as an integer, or a number.
@@ -43,10 +43,8 @@ async function loadPokemon(id) {
 		if (currentPokemonId === id) {
 			// a function for displaying the pokemon details, withour pokemon variable as an argument
 			displayPokemonDetails(pokemon);
-
 			// we set this variable as a function to get the english flavor text, with an argument of our pokemonSpecies variable
 			const flavorText = getEnglishFlavorText(pokemonSpecies);
-			console.log(pokemonSpecies);
 			// get the query selector of these classes, and their text content will be equal to the flavorText variable. This should display the pokemons description.
 			document.querySelector('.body3-fonts.pokemon-description').textContent =
 				flavorText;
@@ -66,7 +64,7 @@ async function loadPokemon(id) {
 				});
 			}
 			// If it's not 151, which is the last pokemon in our limit, then we can click and move up an id with our rightArrow Icon.
-			if (id !== 649) {
+			if (id !== 1025) {
 				rightArrow.addEventListener('click', () => {
 					navigatePokemon(id + 1);
 				});
@@ -134,6 +132,9 @@ function setTypeBackgroundColor(pokemon) {
 	// this will get the pokemon type name
 	const mainType = pokemon.types[0].type.name;
 	// our color will be set to our object of  typeColors with our mainType variable
+	const secondType = pokemon.types[1] ? pokemon.types[1].type.name : null;
+
+	const color1 = typeColors[secondType];
 	const color = typeColors[mainType];
 
 	// If there is no color, console warn
@@ -145,6 +146,26 @@ function setTypeBackgroundColor(pokemon) {
 	// we will set this variable to our detail-main class div
 	const detailMainElement = document.querySelector('.detail-main');
 
+	// if (pokemon === mainType) {
+	// 	setElementStyles(
+	// 		document.querySelectorAll('.power-wrapper p.type-1'),
+	// 		'backgroundColor',
+	// 		color
+	// 	);
+	// } else if (pokemon === mainType && secondType) {
+	// 	setElementStyles(
+	// 		document.querySelectorAll('.power-wrapper p.type-2'),
+	// 		'backgroundColor',
+	// 		color1
+	// 	);
+	// } else {
+	// 	setElementStyles(
+	// 		document.querySelectorAll('.power-wrapper p.type-1'),
+	// 		'backgroundColor',
+	// 		color
+	// 	);
+	// }
+
 	// we will run out setElementStyles with the paramaters we have defined here of the specific detial, the cssProperty of backgroundColor and borderColor, and the value of color. We are doing the same with the rest of these class names, and specified cssProperty below
 	setElementStyles([detailMainElement], 'backgroundColor', color);
 	setElementStyles([detailMainElement], 'borderColor', color);
@@ -152,6 +173,11 @@ function setTypeBackgroundColor(pokemon) {
 		document.querySelectorAll('.power-wrapper > p'),
 		'backgroundColor',
 		color
+	);
+	setElementStyles(
+		document.querySelectorAll('.power-wrapper > p:nth-child(2)'),
+		'backgroundColor',
+		color1
 	);
 	setElementStyles(
 		document.querySelectorAll('.stats-wrap p.stats'),
@@ -235,7 +261,7 @@ function displayPokemonDetails(pokemon) {
 
 	// Our Main Element image in our details page
 	const imageElement = document.querySelector('.detail-img-wrapper img');
-	imageElement.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`;
+	imageElement.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${id}.png`;
 	imageElement.alt = name;
 
 	// grab the power-wrapper div and give it this var name
