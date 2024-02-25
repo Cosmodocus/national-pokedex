@@ -1,4 +1,4 @@
-const MAX_POKEMON = 1025;
+const MAX_POKEMON = 1008;
 // Our empty div that will contain all our listItem divs of Pokemon data cards
 const listWrapper = document.querySelector('.list-wrapper');
 // our search input tag where we will search our pokemon
@@ -7,6 +7,8 @@ const searchInput = document.querySelector('#search-input');
 const numberFilter = document.querySelector('#number');
 // our radio input box that will filter as name if checked in our search input
 const nameFilter = document.querySelector('#name');
+// our radio input box that will filter our pokemon generation through our search input
+const genFilter = document.querySelector('#generation');
 // our not found message div if the search is outside the scope of our data
 const notFoundMessage = document.querySelector('#not-found-message');
 

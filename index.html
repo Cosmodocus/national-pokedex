@@ -6,7 +6,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
-		<title>Pokedex</title>
+		<title>National Pokédex</title>
 		<link
 			rel="icon"
 			href="./assets/pokedex.svg"
@@ -31,17 +31,17 @@
 			<header class="header home">
 				<div class="container">
 					<div class="logo-wrapper">
+						<h1>National Pokédex</h1>
 						<img
 							src="./assets/pokeball.svg"
 							alt="pokeball"
 						/>
-						<h1>Pokedex</h1>
 					</div>
 					<!-- Where we will input our search functionality -->
 					<div class="search-wrapper">
 						<div class="search-wrap">
 							<img
-								src="/assets/search.svg"
+								src="/assets/search-icon.png"
 								alt="search icon"
 								class="search-icon"
 							/>
@@ -62,7 +62,7 @@
 						<div class="sort-wrapper">
 							<div class="sort-wrap">
 								<img
-									src="./assets/sorting.svg"
+									src="./assets/sorting-icon.svg"
 									alt="sorting"
 									class="sort icon"
 									id="sort-icon"
@@ -86,17 +86,32 @@
 											>Name</label
 										>
 									</div>
-									<input
-										type="radio"
-										id="number"
-										name="filters"
-										value="number"
-									/>
-									<label
-										for="number"
-										class="body3-fonts"
-										>Number</label
-									>
+									<div>
+										<input
+											type="radio"
+											id="number"
+											name="filters"
+											value="number"
+										/>
+										<label
+											for="number"
+											class="body3-fonts"
+											>Number</label
+										>
+									</div>
+									<div>
+										<input
+											type="radio"
+											id="generation"
+											name="filters"
+											value="generation"
+										/>
+										<label
+											for="generation"
+											class="body3-fonts"
+											>Generation</label
+										>
+									</div>
 								</div>
 								<div></div>
 							</div>

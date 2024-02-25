@@ -3,7 +3,7 @@ let currentPokemonId = null;
 
 document.addEventListener('DOMContentLoaded', () => {
 	//restating the max pokemon because this is a new js file
-	const MAX_POKEMONS = 1025;
+	const MAX_POKEMONS = 1008;
 	// pokemonID will be getting the url id string
 	const pokemonID = new URLSearchParams(window.location.search).get('id');
 	// when we get the id string, we will be parsing it as an integer, or a number.
@@ -46,8 +46,14 @@ async function loadPokemon(id) {
 			// we set this variable as a function to get the english flavor text, with an argument of our pokemonSpecies variable
 			const flavorText = getEnglishFlavorText(pokemonSpecies);
 			// get the query selector of these classes, and their text content will be equal to the flavorText variable. This should display the pokemons description.
+			console.log(pokemonSpecies);
+			console.log(pokemon);
 			document.querySelector('.body3-fonts.pokemon-description').textContent =
 				flavorText;
+
+			document.querySelector(
+				'.pokemon-detail-wrap .pokemon-detail-generation'
+			).textContent = pokemonSpecies.generation.name;
 
 			//our left and right arrow logic. We will destructure these variables with the left and right arrow ids, and map them.
 			const [leftArrow, rightArrow] = ['#leftArrow', '#rightArrow'].map((sel) =>
@@ -64,7 +70,7 @@ async function loadPokemon(id) {
 				});
 			}
 			// If it's not 151, which is the last pokemon in our limit, then we can click and move up an id with our rightArrow Icon.
-			if (id !== 1025) {
+			if (id !== 1008) {
 				rightArrow.addEventListener('click', () => {
 					navigatePokemon(id + 1);
 				});
@@ -146,26 +152,6 @@ function setTypeBackgroundColor(pokemon) {
 	// we will set this variable to our detail-main class div
 	const detailMainElement = document.querySelector('.detail-main');
 
-	// if (pokemon === mainType) {
-	// 	setElementStyles(
-	// 		document.querySelectorAll('.power-wrapper p.type-1'),
-	// 		'backgroundColor',
-	// 		color
-	// 	);
-	// } else if (pokemon === mainType && secondType) {
-	// 	setElementStyles(
-	// 		document.querySelectorAll('.power-wrapper p.type-2'),
-	// 		'backgroundColor',
-	// 		color1
-	// 	);
-	// } else {
-	// 	setElementStyles(
-	// 		document.querySelectorAll('.power-wrapper p.type-1'),
-	// 		'backgroundColor',
-	// 		color
-	// 	);
-	// }
-
 	// we will run out setElementStyles with the paramaters we have defined here of the specific detial, the cssProperty of backgroundColor and borderColor, and the value of color. We are doing the same with the rest of these class names, and specified cssProperty below
 	setElementStyles([detailMainElement], 'backgroundColor', color);
 	setElementStyles([detailMainElement], 'borderColor', color);
@@ -191,20 +177,20 @@ function setTypeBackgroundColor(pokemon) {
 	);
 
 	// this variable will be equal to our rgbaFromHex function with an input of our color variable
-	const rgbaColor = rgbaFromHex(color);
+	// const rgbaColor = rgbaFromHex(color);
 
 	// our styleTag variable will create our style element
 	const styleTag = document.createElement('style');
 
 	// here is our innerHTML for our styleTag element we created for the specified classes and their changes to their background color. It will be for the progress bar stats displaying the pokemons hp, atk, def, etc.
-	styleTag.innerHTML = `
-        .stats-wrap .progress-bar::-webkit-progress-bar {
-            background-color: rgba(${rgbaColor}, 0.5)
-        }
-        .stats-wrap .progress-bar::-webkit-progress-value {
-            background-color: rgba(${color})
-        }
-    `;
+	// styleTag.innerHTML = `
+	//     .stats-wrap .progress-bar::-webkit-progress-bar {
+	//         background-color: rgba(${rgbaColor}, 0.5)
+	//     }
+	//     .stats-wrap .progress-bar::-webkit-progress-value {
+	//         background-color: rgba(${color})
+	//     }
+	// `;
 
 	// within the document, append child of our styleTag that we created.
 	document.head.appendChild(styleTag);
@@ -236,7 +222,8 @@ function createAndAppendElement(parent, tag, options = {}) {
 // This function is entirely for displaying all our specific pokemon detials
 function displayPokemonDetails(pokemon) {
 	// we set our pokemon argument in this function as these object items.
-	const { name, id, types, weight, height, abilities, stats } = pokemon;
+	const { name, id, types, weight, height, abilities, generation, stats } =
+		pokemon;
 
 	// we create a variable with our name item passed in as the capitalizeFirstLetter function
 	const capitalizePokemonName = capitalizeFirstLetter(name);
@@ -344,7 +331,7 @@ function displayPokemonDetails(pokemon) {
 function getEnglishFlavorText(pokemonSpecies) {
 	for (let entry of pokemonSpecies.flavor_text_entries) {
 		if (entry.language.name === 'en') {
-			let flavor = entry.flavor_text.replace(/\f/g, '');
+			let flavor = entry.flavor_text.replace(/\f/g, ' ');
 			return flavor;
 		}
 	}
