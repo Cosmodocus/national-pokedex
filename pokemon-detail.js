@@ -75,6 +75,19 @@ async function loadPokemon(id) {
 					navigatePokemon(id + 1);
 				});
 			}
+			console.log(pokemon.cries.latest);
+
+			// this is our variable for inserting the pokemon cry within our details. Grab the DOM for the audio tag, and give it the source of the pokemon object of cries and latest.
+			const audioSource = document.querySelector('.pokemon-detail audio');
+			audioSource.src = pokemon.cries.latest;
+			// This halves the volume, to not cause a jarring experience
+			audioSource.volume = 0.5;
+
+			// This is for our pokemon Genus display. Similar to the flavorText, we give the variable the same helperfunction of getting the english text, then set the textContent of the div classes to the variable
+			const pokemonGenus = getEnglishGenus(pokemonSpecies);
+			document.querySelector('.pokemon-detail .pokemon-names').textContent =
+				pokemonGenus;
+
 			// pushes into the history of the window and changes the url without having to reload the page
 			window.history.pushState({}, '', `./detail.html?id=${id}`);
 		}
@@ -138,7 +151,7 @@ function setTypeBackgroundColor(pokemon) {
 	// this will get the pokemon type name
 	const mainType = pokemon.types[0].type.name;
 	// our color will be set to our object of  typeColors with our mainType variable
-	const secondType = pokemon.types[1] ? pokemon.types[1].type.name : null;
+	const secondType = pokemon.types[1] && pokemon.types[1].type.name;
 
 	const color1 = typeColors[secondType];
 	const color = typeColors[mainType];
@@ -222,8 +235,7 @@ function createAndAppendElement(parent, tag, options = {}) {
 // This function is entirely for displaying all our specific pokemon detials
 function displayPokemonDetails(pokemon) {
 	// we set our pokemon argument in this function as these object items.
-	const { name, id, types, weight, height, abilities, generation, stats } =
-		pokemon;
+	const { name, id, types, weight, height, abilities, stats } = pokemon;
 
 	// we create a variable with our name item passed in as the capitalizeFirstLetter function
 	const capitalizePokemonName = capitalizeFirstLetter(name);
@@ -336,5 +348,16 @@ function getEnglishFlavorText(pokemonSpecies) {
 		}
 	}
 	// if nothing is found, just return an empty string.
+	return '';
+}
+
+// This function runs exactly like the previous helper function for flavortext, but without needed to replace any of the text.
+function getEnglishGenus(pokemonSpecies) {
+	for (let entry of pokemonSpecies.genera) {
+		if (entry.language.name === 'en') {
+			let genus = entry.genus;
+			return genus;
+		}
+	}
 	return '';
 }

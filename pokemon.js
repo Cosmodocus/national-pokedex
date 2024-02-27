@@ -36,6 +36,7 @@ async function fetchPokemonDataBeforeRedirect(id) {
 				res.json()
 			),
 		]);
+
 		return true;
 	} catch (error) {
 		console.error('Failed to fetch Pokemon data before redirect');
@@ -45,6 +46,7 @@ async function fetchPokemonDataBeforeRedirect(id) {
 function displayPokemons(pokemon) {
 	// empty the listwrapper incase we reload the page and its not adding pokemon ontop of existing ones
 	listWrapper.innerHTML = '';
+	console.log(pokemon);
 
 	pokemon.forEach((pokemon) => {
 		// this will grab the id number of the pokemon within the url
@@ -66,7 +68,6 @@ function displayPokemons(pokemon) {
             <div class='name-wrap'>
                 <p class='body3-fonts'>${pokemon.name}</p>
             </div>
-        
         `;
 		// If we click on the listItem div, it will take us to the details page of the specific pokemon we clicked, hence the async function to await running the function.
 		listItem.addEventListener('click', async () => {
