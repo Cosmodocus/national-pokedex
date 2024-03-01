@@ -394,13 +394,21 @@ body {
 	text-transform: capitalize;
 	word-break: break-all;
 	padding: 0 4px;
-}
-
-.pokemon-detail.weight,
-.pokemon-detail.height¨ {
 	font-size: 1rem;
 }
 
+.pokemon-detail .weight,
+.pokemon-detail .height {
+	font-size: 1rem;
+}
+
+.pokemon-detail img {
+	width: 20px;
+}
+
+.pokemon-detail .house-icon {
+	width: 25px;
+}
 .list-item {
 	margin: 0.5rem;
 	padding: 0.125rem;
@@ -462,9 +470,12 @@ body {
 	align-items: center;
 	gap: 4px;
 }
+.pokemon-detail-generation {
+	font-size: 1rem;
+}
 
 .pokemon-detail .pokemon-names {
-	font-size: 0.75rem;
+	font-size: 0.85rem;
 }
 
 .pokemon-detail audio {
