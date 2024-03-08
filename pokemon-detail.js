@@ -53,7 +53,7 @@ async function loadPokemon(id) {
 
 			document.querySelector(
 				'.pokemon-detail-wrap .pokemon-detail-generation'
-			).textContent = pokemonSpecies.generation.name;
+			).textContent = capitalizeFirstLetter(pokemonSpecies.generation.name);
 
 			//our left and right arrow logic. We will destructure these variables with the left and right arrow ids, and map them.
 			const [leftArrow, rightArrow] = ['#leftArrow', '#rightArrow'].map((sel) =>
