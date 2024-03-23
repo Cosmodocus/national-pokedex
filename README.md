@@ -1,18 +1,4 @@
-# National Pokedex Project Notes
-
-## Files
-- index.html
-- details.html
-- style.css
-- pokemon.js
-- pokemon-details.js
-- search.js
-
-## Methods Used
-- **PokeAPI**
-- `addeventlisteners` (input, click, keyup, DOMContentLoaded)
-- `removeeventlisteners`
-- Asynchronous funct# National Pokédex 🌐🔍📊🔧
+# National Pokédex 🌐🔍📊🔧
 
 ## Features:
 - 🔍 Search bar functionality:
