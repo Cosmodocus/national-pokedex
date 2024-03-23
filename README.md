@@ -1,4 +1,4 @@
-# National Pokédex 🌐🔍📊🔧
+# National Pokédex 🌐
 
 ## Features:
 - 🔍 Search bar functionality:
@@ -25,6 +25,5 @@
         - Gender/Shinies 
 - 📝 Add Multiple descriptions 
 - 🔍 Create more search functionality based on: 
-      - Generation 
-      - Typing 
+      - Generation | Typing 
 - ⚡ Integrate better Performance for loading data 
